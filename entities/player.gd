@@ -42,7 +42,8 @@ func _physics_process(delta):
 		var collider = collision.get_collider() as Node2D
 		
 		if collider.is_in_group("saw_blades"):
-			queue_free()
+			print("dead")
+#			queue_free()
 
 
 

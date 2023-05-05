@@ -11,7 +11,8 @@ radius = 9.0
 height = 252.0
 
 [node name="SawBlade" type="CharacterBody2D" groups=["saw_blades"]]
-collision_layer = 2
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_5i4s3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -24,6 +25,8 @@ vframes = 3
 frame = 14
 
 [node name="JumpOverTrigger" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JumpOverTrigger"]
 position = Vector2(0, -122)

@@ -5,7 +5,8 @@ extends Area2D
 
 @onready var timer = $Timer
 
-const saw_blade = preload("res://entities/saw_blade.tscn")
+const Saw_blade = preload("res://entities/saw_blade.tscn")
+const Coin = preload("res://entities/coin.tscn")
 var saw_blades_jumped_over: Array[SawBlade] = []
 
 func _ready():
@@ -15,7 +16,7 @@ func _ready():
 
 
 func _on_timer_timeout():
-	var new_blade = saw_blade.instantiate()
+	var new_blade = Saw_blade.instantiate()
 	
 	new_blade.set_position(Vector2(randf_range(-80, 80), 20))
 	new_blade.player_jump_over.connect(_on_player_jump_over_saw_blade)
@@ -32,7 +33,16 @@ func _on_body_entered(body):
 
 
 func _on_player_hit_floor():
-	for blade in saw_blades_jumped_over:
+	for index in saw_blades_jumped_over.size():
+		var blade = saw_blades_jumped_over[index]
+		
+		var coins_amount = pow(2, index + 1)
+		
+		for n in coins_amount:
+			var coin = Coin.instantiate()
+			coin.set_position(blade.get_position())
+			add_child(coin)
+
 		blade.queue_free() 
 		
 	saw_blades_jumped_over = []
