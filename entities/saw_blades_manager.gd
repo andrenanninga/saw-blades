@@ -17,7 +17,7 @@ func _ready():
 func _on_timer_timeout():
 	var new_blade = saw_blade.instantiate()
 	
-	new_blade.set_position(Vector2(randf_range(10, 100), 40))
+	new_blade.set_position(Vector2(randf_range(-80, 80), 20))
 	new_blade.player_jump_over.connect(_on_player_jump_over_saw_blade)
 	
 	add_child(new_blade)

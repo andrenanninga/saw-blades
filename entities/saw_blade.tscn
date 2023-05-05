@@ -21,7 +21,7 @@ shape = SubResource("CircleShape2D_bk6dx")
 texture = ExtResource("1_njg2a")
 hframes = 9
 vframes = 3
-frame = 8
+frame = 14
 
 [node name="JumpOverTrigger" type="Area2D" parent="."]
 

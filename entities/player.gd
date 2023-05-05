@@ -35,7 +35,14 @@ func _physics_process(delta):
 		elif !did_double_jump:
 			double_jump()
 	
-	move_and_slide()
+	var collided = move_and_slide()
+	
+	if collided:
+		var collision = get_last_slide_collision()
+		var collider = collision.get_collider() as Node2D
+		
+		if collider.is_in_group("saw_blades"):
+			queue_free()
 
 
 
