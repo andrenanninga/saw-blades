@@ -10,7 +10,7 @@ radius = 8.0
 radius = 9.0
 height = 252.0
 
-[node name="SawBlade" type="CharacterBody2D"]
+[node name="SawBlade" type="CharacterBody2D" groups=["saw_blades"]]
 collision_layer = 2
 script = ExtResource("1_5i4s3")
 
@@ -28,3 +28,5 @@ frame = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JumpOverTrigger"]
 position = Vector2(0, -122)
 shape = SubResource("CapsuleShape2D_rb1jg")
+
+[connection signal="body_entered" from="JumpOverTrigger" to="." method="_on_jump_over_trigger_body_entered"]

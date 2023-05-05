@@ -1,15 +1,25 @@
+class_name Player
 extends CharacterBody2D
 
 @export var speed : float = 200.0
 @export var jump_strength : float = 400.0
 @export var double_jump_strength : float = 300.0
 
+signal hit_floor
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var was_on_floor = false
 var did_double_jump = false
 
 func _physics_process(delta):
-	if not is_on_floor():
+	if is_on_floor():
+		if !was_on_floor:
+			emit_signal("hit_floor")
+		
+		was_on_floor = true
+	else:
+		was_on_floor = false
 		velocity.y += gravity * delta
 	
 	var direction = Input.get_vector("left", "right", "up", "down")
