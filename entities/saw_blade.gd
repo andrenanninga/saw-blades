@@ -18,12 +18,12 @@ func _physics_process(delta):
 
 	if collision:
 		var collider = collision.get_collider() as Node2D
-		
+
 		if collider.is_in_group("player"):
 			emit_signal("hit_player")
 		else:
 			var normal = collision.get_normal()
-			
+
 			if normal.x != 0:
 				direction.x *= -1
 			elif normal.y != 0:

@@ -8,24 +8,40 @@ bounce = 0.6
 [sub_resource type="GDScript" id="GDScript_y5lwc"]
 script/source = "extends RigidBody2D
 
-
-
 @onready var animation_player = $AnimationPlayer
+
+signal pickup
 
 
 
 func _ready():
 	var force = Vector2(randf_range(-1, 1), randf_range(-2, -4))
 	apply_central_impulse(force)
-	
+
 	var offset = randf_range(0, animation_player.current_animation_length)
 	animation_player.advance(offset)
 
 func _on_area_2d_body_entered(_body):
+	emit_signal(\"pickup\")
 	queue_free()
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4vyqr"]
+
+[sub_resource type="Animation" id="Animation_h8vp5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [151]
+}
 
 [sub_resource type="Animation" id="Animation_7nilv"]
 resource_name = "rotate"
@@ -43,21 +59,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [151, 152]
-}
-
-[sub_resource type="Animation" id="Animation_h8vp5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [151]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rlb25"]
@@ -92,7 +93,7 @@ libraries = {
 "": SubResource("AnimationLibrary_rlb25")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["coins"]]
 collision_layer = 0
 collision_mask = 2
 
