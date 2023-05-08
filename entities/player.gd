@@ -42,7 +42,7 @@ func _physics_process(delta):
 		var collider = collision.get_collider() as Node2D
 
 		if collider.is_in_group("saw_blades"):
-			SceneTransition.change_scene("res://scenes/main_level.tscn")
+			SceneManager.change_scene("res://scenes/playground.tscn")
 #			queue_free()
 
 

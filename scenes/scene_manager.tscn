@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtx52bsnrla4y"]
+[gd_scene load_steps=5 format=3 uid="uid://bdsnbdiviqnpw"]
 
-[ext_resource type="Script" path="res://scenes/scene_transition.gd" id="1_s5y4s"]
+[ext_resource type="Script" path="res://scenes/scene_manager.gd" id="1_2gmr5"]
 
 [sub_resource type="Animation" id="Animation_rk3t0"]
 resource_name = "RESET"
@@ -39,8 +39,8 @@ _data = {
 "dissolve": SubResource("Animation_hfhnj")
 }
 
-[node name="SceneTransition" type="CanvasLayer"]
-script = ExtResource("1_s5y4s")
+[node name="SceneManager" type="CanvasLayer"]
+script = ExtResource("1_2gmr5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../DissolveRect")
@@ -55,4 +55,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(1, 0.419608, 0.290196, 1)
